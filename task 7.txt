@@ -1,0 +1,31 @@
+task 7.1
+SQL-запит для витягування року, місяця та числа з атрибута date таблиці orders
+
+SELECT id, YEAR(date) AS year, MONTH(date) AS month, DAY(date) AS day, date
+FROM mydb.orders;
+
+task 7.2
+SQL-запит для додавання одного дня до атрибута date таблиці orders
+
+SELECT id, date, DATE_ADD(date, INTERVAL 1 DAY) AS next_date
+FROM mydb.orders;
+
+task 7.3
+
+SQL-запит для відображення кількості секунд з початку відліку для атрибута date таблиці orders
+
+SELECT id, date, UNIX_TIMESTAMP(date) AS seconds_from_epoch
+FROM mydb.orders;
+
+task 7.4
+SQL-запит для підрахунку кількості рядків з атрибутом date, що знаходяться у вказаному проміжку часу
+
+SELECT COUNT(*) AS count_orders
+FROM mydb.orders
+WHERE date BETWEEN '1996-07-10 00:00:00' AND '1996-10-08 00:00:00';
+
+task 7.5
+SQL-запит для виведення атрибута id, атрибута date та JSON-об'єкта для таблиці orders
+
+SELECT id, date, JSON_OBJECT('id', id, 'date', date) AS json_data
+FROM mydb.orders;
